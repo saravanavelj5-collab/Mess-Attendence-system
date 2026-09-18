@@ -1,0 +1,6 @@
+{
+  "name": "Hostel Mess Attendance System",
+  "description": "A simple, clean, and responsive hostel mess attendance system for students, mess managers, and administrators.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

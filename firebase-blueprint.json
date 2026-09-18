@@ -1,0 +1,46 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Hostel user profile including students, mess managers, and admins",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "format": "email", "maxLength": 150 },
+        "role": { "type": "string", "enum": ["student", "mess_manager", "admin"] },
+        "studentId": { "type": "string", "maxLength": 50 },
+        "roomNumber": { "type": "string", "maxLength": 50 },
+        "department": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "role"]
+    },
+    "Attendance": {
+      "title": "Attendance",
+      "description": "Daily meal attendance record for a student",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string", "maxLength": 50 },
+        "studentName": { "type": "string", "maxLength": 100 },
+        "roomNumber": { "type": "string", "maxLength": 50 },
+        "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+        "breakfast": { "type": "string", "enum": ["available", "not_available", "not_submitted"] },
+        "lunch": { "type": "string", "enum": ["available", "not_available", "not_submitted"] },
+        "dinner": { "type": "string", "enum": ["available", "not_available", "not_submitted"] },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["studentId", "date", "breakfast", "lunch", "dinner"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Collection of registered users"
+    },
+    "/attendance/{attendanceId}": {
+      "schema": "Attendance",
+      "description": "Collection of daily student attendance records"
+    }
+  }
+}
